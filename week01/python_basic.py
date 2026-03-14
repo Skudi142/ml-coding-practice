@@ -445,6 +445,7 @@ while True:
 
 f.close()
 
-# 파일 모드 
-
+# 파일 모드 'r' - readline()
+f = open('example.txt, 'r)
+lines = f.readlines()
 
