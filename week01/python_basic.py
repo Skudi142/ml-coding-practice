@@ -132,3 +132,36 @@ print(a)
 # 원소 순서 뒤집기
 a = [3, 4, 1, 9]
 a.reverse()
+print(a)
+
+# 원소 위치 확인
+print(a.index(9))
+
+# 원소 삽입
+a.insert(0, 99)
+print(a)
+
+# 원소 삭제
+a.remove(99)
+print(a)
+
+b = [1, 2, 3]
+print(b.pop())
+print(b)
+
+print(b.pop(0))
+print(b)
+
+# 특정 원소값의 개수
+a = [2, 1, 0, 2, 3, 2, 4, 2]
+print(a.count(2))
+
+# 튜플 만들기
+t1 = (1, )
+t2 = (1, 2, 3)
+t3 = 1, 2, 3
+t4 = (1, 2, (3, 4), ('Life', 'is'))
+
+# 튜플 인덱싱
+print(t4[0])
+print(t4[3] [-1])
