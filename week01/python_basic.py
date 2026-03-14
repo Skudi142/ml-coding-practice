@@ -294,7 +294,7 @@ for score in [90, 25, 67, 45, 93]:
 
     if score > 60:
         print("%d번 학생은 합격입니다." % number)
-    else
+    else:
         print("%d번 학생은 불합격입니다." % number)
 
 # while 문
@@ -325,7 +325,7 @@ print(sum2(2, 3.5, 10))
 """## 내장 함수"""
 
 # 숫자 x의 절대값을 반환
-print(abbs(-3.5))
+print(abs(-3.5))
 
 # 그룹 자료형의 변수 x의 모든 원소가 참(0이 아닌 값)이면 True 반환
 print(all([1, 2, 3, 4]))
