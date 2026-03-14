@@ -1,5 +1,5 @@
 a = 3
-a = 4
+b = 4
 
 # 지수승
 print(a ** b)
@@ -22,7 +22,7 @@ print(s3)
 
 head = 'Python'
 tail = " is fun"
-printf(head + tail)
+print(head + tail)
 
 # 문자열 곱하기
 print(head * 2)
