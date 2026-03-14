@@ -180,4 +180,23 @@ t2 * 10
 # t2[2] = 99      # 오류 발생
 
 # 딕셔너리 만들기
-dic = {'name':'Hong', 'phone':'01012345678'}
+dic = {'name':'Hong', 'phone':'01012345678', 'birth':'0814'}
+
+# 원소 추가
+dic[1] = 'a'
+print(dic)
+
+dic['pet'] = 'dog'
+print(dic)
+
+# 원소 삭제
+del dic[1]
+print(dic)
+
+# 원소의 value 구하기
+print(dic['phone'])
+print(dic['name'])
+
+# key의 리스트 만들기
+print(dic.keys())
+print(list(dic.keys()))
