@@ -426,3 +426,8 @@ for i in range(1, 6):
     date = '%d번째 줄입니다. \n' % i
     f.write(date)
 f.close()
+
+# 파일 모드 'r' - readline()
+f = open('example.txt', 'r')
+
+
