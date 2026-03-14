@@ -404,8 +404,8 @@ print(sorted('Python'))
 # 패키지, 모듈 사용
 # Request('http://www.sunmoon.ac.kr'   # 오류 발생
 
-import ur1lib.request
-ur1lib.request.Request('http://www.sunmoon.ac.kr')
+import urllib.request
+urllib.request.Request('http://www.sunmoon.ac.kr')
 
 import pandas
 pandas.DataFrame()
