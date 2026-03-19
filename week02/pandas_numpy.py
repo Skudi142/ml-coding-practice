@@ -56,11 +56,11 @@ print(~(netflix['release_year'] > 2015))
 more2015 = netflix[~(netflix['release_year'] > 2015)]
 print(less20215.head())
 
-((netflix['release_year'] > 2015) & (netflix['type'] == 'TV Show'))
+print((netflix['release_year'] > 2015) & (netflix['type'] == 'TV Show'))
 
-015_tv - netflix[(netflix['release_year'] > 2015) & (netflix['type'] == 'TV Show')]
-(more2015_tv.head())
+more2015_tv - netflix[(netflix['release_year'] > 2015) & (netflix['type'] == 'TV Show')]
+print(more2015_tv.head())
 
-015_or_tv - netflix[(netflix['release_year'] > 2015) & (netflix['type'] == 'TV Show')]
-(more2015_or_tv.head())
+more2015_or_tv - netflix[(netflix['release_year'] > 2015) & (netflix['type'] == 'TV Show')]
+print(more2015_or_tv.head())
 
