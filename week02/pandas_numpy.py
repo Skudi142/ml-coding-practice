@@ -65,6 +65,12 @@ more2015_or_tv - netflix[(netflix['release_year'] > 2015) & (netflix['type'] == 
 print(more2015_or_tv.head())
 
 data = {
-    'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank', 'Grace', 'Hannah']
+    'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank', 'Grace', 'Hannah'],
+    'comment_length': [150, 200, 50, 300, 120, 180, 75, 160],
+    'likes': [25, 30, 10, 45, 20, 35, 5, 28],
+    'is_spam': [False, False, True, False, False, True, False, False],
+    'has_image': [True, False, True, True, False, False, True, True]
 }
+df = pd.DataFrame(data)
+print(df.head())
 
