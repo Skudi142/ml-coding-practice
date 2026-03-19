@@ -203,3 +203,7 @@ print(a.mean())    # 모든 요소의 평균
 print(a.mean(axis = 0))   # 열을 기준으로 연산
 
 print(a.min())    # 모든 요소 중 최솟값
+print(a.max())    # 모든 요소 중 최댓값
+
+print(a.max(axis=1))
+print(a.cumsum())
