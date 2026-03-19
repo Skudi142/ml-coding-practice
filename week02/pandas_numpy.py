@@ -56,4 +56,6 @@ ix = pd.read_csv('2.1.1.netflix.csv')
 015 = netflix[~(netflix['release_year'] > 2015)]
 (less20215.head())
 
-((netflix['release_year'] > 2015) & (netflix['type' == 'TV Show']))
+((netflix['release_year'] > 2015) & (netflix['type'] == 'TV Show'))
+
+015_tv=
