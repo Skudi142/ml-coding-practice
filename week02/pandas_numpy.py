@@ -50,3 +50,4 @@ ix = pd.read_csv('2.1.1.netflix.csv')
 (netfilx['release_year'] > 2015)
 
 015 = netflix[netflix['release_year'] > 2015]
+(more2015.head(10))
