@@ -159,3 +159,4 @@ print(sample_df.columns)            # 기존 프레임워크에서 컬럼명 가
 
 print(pd.DataFrame(sample_np, columns = sample_df.columns))      # 새 프레임워크에 컬럼명 붙이기
 
+or(sample_np)
