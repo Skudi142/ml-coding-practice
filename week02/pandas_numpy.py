@@ -198,4 +198,8 @@ print(np.arange(8).reshape(2, 4) + 10)
 a = np.arange(8).reshape(2, 4) ** 2
 print(a)
 
-print(a.sum())
+print(a.sum())     # 모든 요소의 합
+print(a.mean())    # 모든 요소의 평균
+print(a.mean(axis = 0))   # 열을 기준으로 연산
+
+print(a.min())    # 모든 요소 중 최솟값
