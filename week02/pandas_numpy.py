@@ -43,7 +43,7 @@ print(sample_df.drop(['var_1','var_3'], axis=1))     # 컬럼을 제거하려면
 print(sample_df.drop(['var_1','var_2'], axis=1))
 print(sample_df.drop(['a','b','c'], axis=0))         # 행을 제거하려면 axis = 0 또는 디폴트로 사용
 
-ix = pd.read_csv('2.1.1.netflix.csv')
+netflix = pd.read_csv('2.1.1.netflix.csv')
 print(netflix.head())
 
 print(netflix['release_year'])
@@ -63,4 +63,8 @@ print(more2015_tv.head())
 
 more2015_or_tv - netflix[(netflix['release_year'] > 2015) & (netflix['type'] == 'TV Show')]
 print(more2015_or_tv.head())
+
+data = {
+    'name': ['Alice', 'Bob', 'Charlie', 'David']
+}
 
