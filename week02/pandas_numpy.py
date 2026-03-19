@@ -42,3 +42,11 @@ print(sample_df.iloc[0:3, 2:4])        # 컬럼까지 동시에 인덱싱
 print(sample_df.drop(['var_1','var_3'], axis=1))     # 컬럼을 제거하려면 axis = 1
 print(sample_df.drop(['var_1','var_2'], axis=1))
 print(sample_df.drop(['a','b','c'], axis=0))         # 행을 제거하려면 axis = 0 또는 디폴트로 사용
+
+ix = pd.read_csv('2.1.1.netflix.csv')
+(netflix.head())
+
+(netflix['release_year'])
+(netfilx['release_year'] > 2015)
+
+015 = netflix[netflix['release_year'] > 2015]
