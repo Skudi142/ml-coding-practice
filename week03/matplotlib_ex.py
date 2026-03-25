@@ -23,5 +23,11 @@ pclass_survivied_maen
 import matplotlib.pyplot as plt
 
 # 선 그래프 그리기
-plt.plot(pclass_survivied_maen['Pcalss'], pclass_survivied_maen['Survived']),
+plt.plot(pclass_survivied_maen['Pcalss'], pclass_survivied_maen['Survived'],
     marker='o', linestyle='-', color='violet')
+plt.title('Survived Rate Varlation Across Passenger Classes')
+plt.xlabel('Pclass')
+plt.ylabel('Survival Rate')
+plt.xticks([1, 2, 3])
+plt.grid(True)
+plt.savefig('Figure01.png')
