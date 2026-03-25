@@ -30,4 +30,7 @@ plt.xlabel('Pclass')
 plt.ylabel('Survival Rate')
 plt.xticks([1, 2, 3])
 plt.grid(True)
-plt.savefig('Figure01.png')
+plt.savefig('Figure01.png')         # 결과를 그림파일로 저장
+plt.close()                         # 다음 Plot를 새로 그리기 위해 plt 닫기
+
+"""### **수직 막대 그래프 : 각 승선 항구에 따른 생존자 수 확인하기**"""
