@@ -14,3 +14,14 @@ print(titanic.head())
 print(titanic.info())
 
 """### **선 그래프 : 객실 등급에 따른 생존율 표시하기**"""
+
+# 객실 등급에 따른 생존자와 사망자의 평균 계산
+pclass_survivied_maen = titanic.groupby('Pclass')['Survived'].mean().reset_index()
+pclass_survivied_maen
+
+# 맷플롯립 라이브러리 불러오기
+import matplotlib.pyplot as plt
+
+# 선 그래프 그리기
+plt.plot(pclass_survivied_maen['Pcalss'], pclass_survivied_maen['Survived']),
+    marker='o', line
