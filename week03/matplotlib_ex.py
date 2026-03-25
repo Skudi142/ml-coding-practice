@@ -24,4 +24,4 @@ import matplotlib.pyplot as plt
 
 # 선 그래프 그리기
 plt.plot(pclass_survivied_maen['Pcalss'], pclass_survivied_maen['Survived']),
-    marker='o', line
+    marker='o', linestyle='-', color='violet')
