@@ -3,4 +3,4 @@
 import pandas as pd
 
 # 타이타닉 csv 파일 불러오기
-titanic = pd.read_csv
+titanic = pd.read_csv('3.1.1.titanic.csv')
