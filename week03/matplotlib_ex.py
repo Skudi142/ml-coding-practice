@@ -42,3 +42,20 @@ print(survived_counts)
 # 막대 그래프 그리기
 bars = pit.barh(survived_counts.index, survived_counts, color=['darkturquoise', 'salmon'])
 plt.title('Survived Counts by Gender on Titanic')
+plt.xlabel('Count')
+plt.ylabel('Gender')
+plt.legend(bars, ['Survived - Female', 'Survived - Male'], loc='upper right')
+
+# 차이 강조를 위해 수평선 추가
+plt.axvline(x=survived_counts['male'], color='gray', linestyle='--', linewidth=1)
+
+# 생존자 수 표시
+for i, value in enumerate(survived_counts):
+    plt.text(value + 1, i, str(value), he='left', va='center')
+
+plt.savefig('Figur03.png')
+plt.close()
+
+"""### **산점도 그래프 : 나이와 요금, 생존 여부 확인하기**"""
+
+print(titanic.info(), '\n')
