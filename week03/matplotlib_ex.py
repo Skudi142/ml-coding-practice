@@ -23,7 +23,7 @@ pclass_survivied_mean
 import matplotlib.pyplot as plt
 
 # 선 그래프 그리기
-plt.plot(pclass_survivied_mean['Pcalss'], pclass_survivied_mean['Survived'],
+plt.plot(pclass_survivied_mean['Pclass'], pclass_survivied_mean['Survived'],
     marker='o', linestyle='-', color='violet')
 plt.title('Survived Rate Varlation Across Passenger Classes')
 plt.xlabel('Pclass')
@@ -199,7 +199,7 @@ plt.boxplot([titanic[titanic['Pclass'] == 1]['Age'],
              titanic[titanic['Pclass'] == 3]['Age']],
              labels=['1st Class', '2nd Class, 3rd Class'])
 
-plt.title('Box Plot for Age by Pcalss')
+plt.title('Box Plot for Age by Pclass')
 plt.xlabel('Pclass')
 plt.ylabel('Age')
 plt.savefig('Figure09.png')
