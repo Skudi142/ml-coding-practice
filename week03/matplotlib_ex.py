@@ -133,3 +133,20 @@ plt.title('Distribution of Ages on the Titanic')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.savefig('Figure06.png')
 plt.close()
+
+## 히트맵 : 두 변수의 상관 관계를 표시하기**
+
+# 결측치 처리
+titanic = titanic.dropna(subset=['Age', 'Fare'])
+
+# 상관 행렬 계산
+correlation_matrix = titanic.drop('Passengerld', axis=1).corr(numeric_only=True)
+print(correlation_matrix)
+
+# 히트맵 그리기
+plt.matshow(correlation_matrix, cmap='PuRd_r')
+plt.colorbar()
+
+# x축과 y축의 눈금 설정
+plt.xticks(range(len(correlation_matrix.columns)), correlation_matrix.columns, rotation=45)
+plt.yticks(range(len(correlation_matrix.columns)), correlation_matrix)
