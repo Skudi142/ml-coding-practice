@@ -40,7 +40,8 @@ survived_counts = titanic[titanic['Survived'] == 1]['Embarked'].value_counts()
 print(survived_counts)
 
 # 막대 그래프 그리기
-
+plt.bar(survived_counts.index, survived_counts,
+        color = ['mediumorchid', 'darkviolet', 'indigo'])
 bars = pit.barh(survived_counts.index, survived_counts, color=['darkturquoise', 'salmon'])
 plt.title('Survived Counts by Gender on Titanic')
 plt.xlabel('Count')
