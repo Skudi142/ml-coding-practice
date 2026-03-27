@@ -55,6 +55,8 @@ for i, value in cnumerate(survived_counts):
 
 plt.savefig('Figure02.png')
 plt.close()
+
+# 생
 bars = pit.barh(survived_counts.index, survived_counts, color=['darkturquoise', 'salmon'])
 plt.title('Survived Counts by Gender on Titanic')
 plt.xlabel('Count')
