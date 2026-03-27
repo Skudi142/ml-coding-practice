@@ -229,4 +229,6 @@ plt.xticks([1, 2, 3], ['1st Class', '2nd Class', '3rd Class'])
 
 # 범례 설정
 plt.legend(violin_plot['bodies'], ['1st Class', '2nd Class', '3rd Class'],
-           title='Pclass', loc='upper right')
+           title='Pclass', loc="upper right")
+plt.savefig('Figure10.png')
+plt.close()
