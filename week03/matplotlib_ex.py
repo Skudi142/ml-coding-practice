@@ -161,3 +161,4 @@ plt.close()
 titanic = titanic.dropna(subset=['Age', 'Fare'])
 
 # 나이대별 생존자와 사망자 수 계산하기 위해 버주형 변수로 전환 
+age_groups = pd.cut(titanic)
