@@ -149,7 +149,7 @@ plt.colorbar()
 
 # x축과 y축의 눈금 설정
 plt.xticks(range(len(correlation_matrix.columns)), correlation_matrix.columns, rotation=45)
-plt.yticks(range(len(correlation_matrix.columns)), correlation_matrix)
+plt.yticks(range(len(correlation_matrix.columns)), correlation_matrix.columns)
 
 plt.title('Correlation Heatmap of Titanic')
 plt.savefig('Figure07.png')
@@ -375,7 +375,7 @@ y2 = parch_counts[1].values # 생존자
 
 # plt.subplots() 함수를 사용하여 그래프 생성
 # figure와 서브플롯 생성
-fig. ax1 = plt.subplots()
+fig, ax1 = plt.subplots()
 
 # 첫 번째 그래프 설정 (선 그래프)
 ax1.plot(x, y1, '-s', color='indigo',  markersize=7, linewidth=5, alpha=0.7, label='Not Survived')
