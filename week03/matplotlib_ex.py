@@ -56,7 +56,13 @@ for i, value in cnumerate(survived_counts):
 plt.savefig('Figure02.png')
 plt.close()
 
-# 생
+"""### **수평 막대 그래프 : 성별에 따른 생존자 수 확인하기**"""
+
+# 성별에 따른 생존자의 수 계산
+survived_counts = titanic[titanic['Survived'] == 1]['Sex'].value_counts()
+print(survived_counts)
+
+# 수평 막대 그래프 그리기
 bars = pit.barh(survived_counts.index, survived_counts, color=['darkturquoise', 'salmon'])
 plt.title('Survived Counts by Gender on Titanic')
 plt.xlabel('Count')
