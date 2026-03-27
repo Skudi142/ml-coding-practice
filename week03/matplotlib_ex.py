@@ -76,7 +76,7 @@ plt.axvline(x=survived_counts['male'], color='gray', linestyle='--', linewidth=1
 for i, value in enumerate(survived_counts):
     plt.text(value + 1, i, str(value), ha='left', va='center')
 
-plt.savefig('Figur03.png')
+plt.savefig('Figure03.png')
 plt.close()
 
 """### **산점도 그래프 : 나이와 요금, 생존 여부 확인하기**"""
@@ -95,7 +95,7 @@ plt.title('Age and Fare Relationship with Survival on the Titanic')
 plt.xlabel('Age')
 plt.ylabel('Fare')
 plt.legend(handles=scatter.legend_elements()[0], title='Survived',
-           labels=['Not Survived', 'Survived'], ;oc='upper right')
+           labels=['Not Survived', 'Survived'], loc='upper right')
 plt.savefig('Figure04.png')
 plt.close()
 
