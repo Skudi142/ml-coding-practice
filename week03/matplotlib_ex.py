@@ -49,6 +49,12 @@ plt.xticks(survived_counts.index, ['Southampton', 'Cherbourg', 'Queentown'])
 plt.legend(['Survived'], loc='upper right')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 
+# 생존자 수 표시
+for i, value in cnumerate(survived_counts):
+    plt.text(i, value + 1, str(value), ha='center', va='bottom')
+
+plt.savefig('Figure02.png')
+plt.close()
 bars = pit.barh(survived_counts.index, survived_counts, color=['darkturquoise', 'salmon'])
 plt.title('Survived Counts by Gender on Titanic')
 plt.xlabel('Count')
