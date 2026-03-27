@@ -50,7 +50,7 @@ plt.legend(['Survived'], loc='upper right')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 
 # 생존자 수 표시
-for i, value in cnumerate(survived_counts):
+for i, value in enumerate(survived_counts):
     plt.text(i, value + 1, str(value), ha='center', va='bottom')
 
 plt.savefig('Figure02.png')
@@ -63,7 +63,7 @@ survived_counts = titanic[titanic['Survived'] == 1]['Sex'].value_counts()
 print(survived_counts)
 
 # 수평 막대 그래프 그리기
-bars = pit.barh(survived_counts.index, survived_counts, color=['darkturquoise', 'salmon'])
+bars = plt.barh(survived_counts.index, survived_counts, color=['darkturquoise', 'salmon'])
 plt.title('Survived Counts by Gender on Titanic')
 plt.xlabel('Count')
 plt.ylabel('Gender')
@@ -74,7 +74,7 @@ plt.axvline(x=survived_counts['male'], color='gray', linestyle='--', linewidth=1
 
 # 생존자 수 표시
 for i, value in enumerate(survived_counts):
-    plt.text(value + 1, i, str(value), he='left', va='center')
+    plt.text(value + 1, i, str(value), ha='left', va='center')
 
 plt.savefig('Figur03.png')
 plt.close()
