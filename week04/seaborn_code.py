@@ -20,7 +20,7 @@ ax2 = fig.add_subplot(1, 2, 2)
 sns.stripplot(x='day', y='tip', hue='sex', data=tips, alpha=0.7, ax=ax1)
 
 # swarmplot( ) 그리기
-snssns.stripplot(x='day', y='tip', hue='sex', data=tips, palette='Set2', alpha=0.7, ax=ax2)
+sns.swarmplot(x='day', y='tip', hue='sex', data=tips, palette='Set2', alpha=0.7, ax=ax2)
 
 # 서브 플롯의 제목 설정
 ax1.set_title('Strip Plot of Tip by Day and Gender')
