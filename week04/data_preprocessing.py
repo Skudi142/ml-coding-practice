@@ -25,4 +25,10 @@ for set_ in (strat_train_set, strat_train_set):
 * 'inplace=True'로 지정하지 않은 한 'strat_train_set' 자체를 수정하지 않음
 """
 
-housing = strat_test_set.drop("median_house")
+housing = strat_test_set.drop("median_house_value", axis=1)
+housing_labels = strat_test_set["median_house_value"].copy()
+
+# 데이터 정체
+# null 값이 있는 행 확인하기
+null_rows_idx = housing.isnull().any(axis=1)
+housing.loc[]
