@@ -9,7 +9,6 @@ housing = pd.read_csv('./week04/housing.csv')       # 오류 발생 시, ./housi
 # 테스트 세트 만들기
 from sklearn.model_selection import train_test_split
 
-
 housing["income_cat"] = pd.cut(housing["median_income"],
                                bins=[0., 1.5, 3.0, 4.5, 6., np.inf],
                                 labels=[1, 2, 3, 4, 5])
@@ -21,5 +20,7 @@ for set_ in (strat_train_set, strat_train_set):
     set_.drop("income_cat", axis=1, inplace=True)
 
 """
-*d
+* 원본 훈련 세트로 복원하고 타킷을 분리
+* 'strat_train_set.drop()'은 지정한 열을 제외한 'strat_train_set'의 복사본을 만듦
+* 'inplace=True
 # ""
