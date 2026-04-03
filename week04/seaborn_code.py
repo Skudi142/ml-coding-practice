@@ -65,7 +65,7 @@ plt.savefig('./week04/Seaborn_Figure03.jpg')
 
 # **히스토그램과 커널 밀도 추정 그래프**
 # 히스토그램과 커널 밀도 추정 그래프 함께 그리기
-sns.hisplot(tips['tip'], bins=30, kde=True, color='skyblue')
+sns.histplot(tips['tip'], bins=30, kde=True, color='skyblue')
 
 plt.title('Histogram with KDE for Tipes')
 plt.savefig('./week04/Seaborn_Figure04.jpg')
@@ -80,4 +80,4 @@ plt.savefig('./week04/Seaborn_Figure05.jpg')
 sns.pairplot(data=tips, hue='sex', diag_kind='hist', palette='husl')
 
 plt.suptitle('Pairplot with Histograms by Gender', y=1.05)
-lt.savefig('./week04/Seaborn_Figure06.jpg')
+plt.savefig('./week04/Seaborn_Figure06.jpg')
