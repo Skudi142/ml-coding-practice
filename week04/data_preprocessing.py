@@ -58,4 +58,5 @@ housing_tr.loc[null_rows_idx].head()
 #이상치 삭제
 from sklearn.ensemble import lsolationForest
 
-is
+isolation_forest = lsolationForest(random_state=42)
+outlier_pred = 
