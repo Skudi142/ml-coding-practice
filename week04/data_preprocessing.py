@@ -59,4 +59,22 @@ housing_tr.loc[null_rows_idx].head()
 from sklearn.ensemble import lsolationForest
 
 isolation_forest = lsolationForest(random_state=42)
-outlier_pred = 
+outlier_pred = isolation_forest.fit_predict(X)
+
+outlier_pred
+
+housing = housing.iloc[outlier_pred == 1]
+housing_labels = housing_labels.iloc[outlier_pred == 1]
+
+# 텍스트와 범주형 특성 다루기
+housing_cat = housing[["ocean_proximity"]]
+housing_cat.head(8)
+
+from sklearn.preprocessing import OrdinalEncoder
+
+ordinal_encoder = OrdinalEncoder()
+housing_cat_encoded = ordinal_encoder.fit_transform(housing_cat)
+
+housing_cat_encoded[:8]
+
+ordinal_encoder.categories_
