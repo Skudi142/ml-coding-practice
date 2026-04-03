@@ -31,4 +31,6 @@ housing_labels = strat_test_set["median_house_value"].copy()
 # 데이터 정체
 # null 값이 있는 행 확인하기
 null_rows_idx = housing.isnull().any(axis=1)
-housing.loc[]
+housing.loc[null_rows_idx].head()
+
+form sklearn.impute import Simplelmputer
