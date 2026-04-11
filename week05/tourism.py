@@ -18,7 +18,7 @@ def main():
     nEndYear = int(input("데이터를 몇 년 까지 수집할까요? :"))
     ed_cd = "E" 		                      # E : 방한외래관광객, D : 해외 출국
 
-    jsonResult, result, natName, dataEND = getTourismStarsService(nat_cd, ed_cd, nStartYear, nEndYear)  #[CODE 3]
+    jsonResult, result, natName, dataEND = getTourismStatsService(nat_cd, ed_cd, nStartYear, nEndYear)  #[CODE 3]
 
     #파일저장 : csv 파일
     columns = ["입국자국가", "국가코드", "입국연월", "입국자 수"]
@@ -37,7 +37,7 @@ def getTourismStatsService(nat_cd, ed_cd, nStartYear, nEndYear):
             jsonData = getTourismStatsltem(yyyymm, nat_cd, ed_cd)     #[CODE 2]
             if (jsonData['response']['header']['resultMsg'] == 'OK'):
               #데이터가 없는 마지막 항목인 경우 ----------------------------
-              if jsonDATA['response']['body']['items'] == "":
+              if jsonData['response']['body']['items'] == "":
                  dataEND = "{0}{1:0>2}".format(str(year), str(month-1))
                  print("데이터 없음....\n제공되는 통계 데이터는 %s년 %s월까지입니다." % (str(year), str(month-1)))
                  break
