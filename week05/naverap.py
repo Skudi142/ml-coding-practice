@@ -50,16 +50,16 @@ def main():
             return json.loads(responseDecode)
         
     def getRequestUrl(url):
-        req = urrllib.request.Request(url)
+        req = urllib.request.Request(url)
 
         req.add_header("X-Naver-client-Id", client_id)
         req.add_header("X-Naver-client-Secret", client_secret)
 
         try:
-            respion = urllib.request.urlopen(req)
+            response = urllib.request.urlopen(req)
             if response.getcode() == 200:
                 print("[%s] Url Request Success" % (datetime.datetime.now(), url))
-                returbn response.read().decode('utf-8')
+                return response.read().decode('utf-8')
         except Exception as e:
             print(e)
             print("[%s] Error for URL : %s" % (datetime.datetime.now(), url))
