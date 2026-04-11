@@ -58,4 +58,4 @@ def main():
         try:
             respion = urllib.request.urlopen(req)
             if response.getcode() == 200:
-                print("[%s] Url Request Success" % (datetime.datetime.now(), urrl))
+                print("[%s] Url Request Success" % (datetime.datetime.now(), url))
