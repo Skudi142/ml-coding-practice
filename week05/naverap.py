@@ -53,4 +53,9 @@ def main():
         req = urrllib.request.Request(url)
 
         req.add_header("X-Naver-client-Id", client_id)
-        req.add_header("X-Naver-client-Secre")
+        req.add_header("X-Naver-client-Secret", client_secret)
+
+        try:
+            respion = urllib.request.urlopen(req)
+            if response.getcode() == 200:
+                print("[%s] Url Request Success" % (datetime.datetime.now), )
