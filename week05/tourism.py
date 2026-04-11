@@ -64,6 +64,13 @@ def getTourismStatsltem(yyyymm, nat_cd, ed_cd):
   parameters += "&NAT_CD=" + nat_cd
   parameters += "&ED_CD=" + ed_cd
 
-  url = service_url + parameters 	                    #[CODE 1]
+  url = service_url + parameters
 
-  responseDecode = getRequestUrl(url)
+  responseDecode = getRequestUrl(url) 	                    #[CODE 1]
+
+  if (responseDecode == None):
+     return None
+  else:
+     return json.loads(responseDecode)
+  
+"""### [CODE 1]"""
