@@ -18,7 +18,7 @@ def main():
     total = jsonResponse['total']
 
     while ((jsonResponse != None) and (jsonResponse['display'] != 0)):
-        for post in jsonRespionse['items']:
+        for post in jsonResponse['items']:
             cnt += 1
             getPostData(post, jsonResult, cnt)                 # [CODE 3]
         
@@ -36,7 +36,7 @@ def main():
         print('가져온 데이터 : %d 건' %cnt)
         print('%s_naver_%s.json SAVED' % (srcText, node))
 
-    def getNaverSearcch(node, srrcText, page_start, display):
+    def getNaverSearch(node, srcText, page_start, display):
         base = "https://openapi.naver.com/v1/search"
         node = "/%s.json" % node
         parameters = "?query=%s&start=%s&display=%s" % (urllib.parse.quote(srcText), page_start, display)
