@@ -7,4 +7,5 @@ client_id = "YOUR_CLIENT_ID"  # 네이버 개발자 센터에서 발급받은 Cl
 client_secret = "YOUR_CLIENT_SECRET"  # 네이버 개발자 센터에서 발급받은 Client Secret
 
 def main():
-    
+
+    node = 'news'
