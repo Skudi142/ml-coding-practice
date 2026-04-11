@@ -14,7 +14,7 @@ def main():
 
     print("<< 국내 입국한 외국인의 통계 데이터를 수집합니다. >> ")
     nat_cd = input('국가 코드를 입력하세요(중국 : 112 / 일본: 130 / 미국: 275) :')
-    nStartYear = int(input('데이터를 몇 년 부터 수입할까요? : '))
+    nStartYear = int(input('데이터를 몇 년 부터 수집할까요? : '))
     nEndYear = int(input("데이터를 몇 년 까지 수집할까요? :"))
     ed_cd = "E" 		                      # E : 방한외래관광객, D : 해외 출국
 
@@ -59,7 +59,7 @@ def getTourismStatsService(nat_cd, ed_cd, nStartYear, nEndYear):
 
 def getTourismStatsltem(yyyymm, nat_cd, ed_cd):
   service_url = "http://openapi.tour.go.kr/openapi/service/EdrcntTourismStatsService/getEdrcntTourismStatsList"
-  parameters = "?_type=json&serviceKey=" + 264d5f2c363e6ede17ff1f274e9dacf9eee7e40fdbbe2c344678b547d7b1db70       # 인증키
+  parameters = "?_type=json&serviceKey=" + "264d5f2c363e6ede17ff1f274e9dacf9eee7e40fdbbe2c344678b547d7b1db70"       # 인증키
   parameters += "&YM=" + yyyymm
   parameters += "&NAT_CD=" + nat_cd
   parameters += "&ED_CD=" + ed_cd
