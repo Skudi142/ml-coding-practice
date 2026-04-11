@@ -51,14 +51,14 @@ def getNaverSearch(node, srcText, page_start, display):
         
 
 def getRequestUrl(url):
-        req = urllib.request.Request(url)
+    req = urllib.request.Request(url)
 
-        req.add_header("X-Naver-Client-Id", client_id)
-        req.add_header("X-Naver-Client-Secret", client_secret)
+    req.add_header("X-Naver-Client-Id", client_id)
+    req.add_header("X-Naver-Client-Secret", client_secret)
 
-        try:
-            response = urllib.request.urlopen(req)
-            if response.getcode() == 200:
+    try:
+        response = urllib.request.urlopen(req)
+        if response.getcode() == 200:
                 print("[%s] Url Request Success" % datetime.datetime.now())
                 return response.read().decode('utf-8')
         except Exception as e:
