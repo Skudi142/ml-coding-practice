@@ -49,4 +49,8 @@ def main():
         else:
             return json.loads(responseDecode)
         
-    
+    def getRequestUrl(url):
+        req = urrllib.request.Request(url)
+
+        req.add_header("X-Naver-client-Id", client_id)
+        req.add_header("X-Naver-client-Secre")
