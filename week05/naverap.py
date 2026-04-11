@@ -24,3 +24,14 @@ def main():
         
         start = jsonResponse['start'] + jsonResponse['display']
         jsonResponse = getNaverSearch(node, srcText, start, 100)  # [CODE 2]
+
+        print('전체 검색 : %d 건' %total)
+
+        with open('%s_naver_%s.json' % (srcText, node), 'w', encoding='utf-8') as outfile:
+            jsonFile = json.dumps(jsonResult, indent = 4, sort_keys = True,
+                                  ensure_ascii = False)
+            
+            outfile.write(jsonFile)
+
+        print('가져온 데이터 : %d 건' %cnt)
+        print('%s_naver_%s.json SAVED' % (srcText, node))
