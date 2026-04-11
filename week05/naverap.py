@@ -3,8 +3,8 @@ import urllib.request
 import datetime
 import json
 
-client_id = "YOUR_CLIENT_ID"  # 네이버 개발자 센터에서 발급받은 Client ID
-client_secret = "YOUR_CLIENT_SECRET"  # 네이버 개발자 센터에서 발급받은 Client Secret
+client_id = "w4mKgei7nXxK78IxPOY6" 
+client_secret = "8J3bOoYQgu" 
 
 def main():
 
