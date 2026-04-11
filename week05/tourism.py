@@ -58,4 +58,4 @@ def getTourismStatsService(nat_cd, ed_cd, nStartYear, nEndYear):
 """### [CODE 2]"""
 
 def getTourismStatsltem(yyyymm, nat_cd, ed_cd):
-    
+    service_url = "http://openap
