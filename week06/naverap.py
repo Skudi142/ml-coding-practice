@@ -32,3 +32,6 @@ jsonFile = json.dumps(jsonResult, indent = 4, sort_keys = True,
     ensure_ascii = False)
 
     outfile.write(jsonFile)
+
+    print('가져온 데이터 : %d 건' % cnt)
+    print('%s_naver_%s.json SAVED' % (srcText, node))
