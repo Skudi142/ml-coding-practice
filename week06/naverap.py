@@ -43,3 +43,8 @@ def main() :
 
     url = base + node + parameters
     responseDecode = getRequestUrl(url)               #[CODE 1]
+
+    if (responseDecode == None):
+        return None
+    else:
+        return json.loads(responseDecode)
