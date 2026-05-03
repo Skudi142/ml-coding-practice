@@ -97,3 +97,16 @@ netflix['title'].str.contains('squid game', na=False, case=False)
 
 # 오징어 게임을 검색한 조건을 넷플릭스 데이터에 넣어서 True인 값만 출력
 netflix[netflix['title'].str.contains('Squid Game', na=False, case=False)]
+
+type_counts = netflix['type'].value_counts()
+print(type_counts)
+
+# 5 x 5 크기의 플롯 만들기
+plt.figure(figsize=(5, 5))
+
+plt.pie(type_counts, labels=type_counts.index, autopct='%0.f%%', startangle=100,
+        explode=[0.05, 0.05], shadow=True, colors=['#b20710', '#221f1f'])
+
+plt.suptitle('Movie & TV Show distribution', fontfamily='serif', fontsize=15, fontweight='bold')
+plt.title('We see more movies than TV shows on Netflix.', fontfamily='serif', fontsize=12)
+plt.show()
