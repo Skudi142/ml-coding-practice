@@ -120,3 +120,14 @@ genres
 # [1단계] listed_in 열에 있는 장르를 쉼표로 분할하기
 # 예시) 인덱스 1의 listed_in 열 값 : International TV Shows, TV Dramas, TV Mysteries
 netflix['listed_in'].str.split(', ', expand=True)
+
+# [2단계] .stack( )을 사용하면 여러 열로 구성한 데이터프레임을 1개의 열로 만들어 쌓음
+# 예시) 인덱스 1의 listed_in 열 값 : International TV Shows, TV Dramas, TV Mysteries
+netflix['listed_in'].str.split(', ', expand=True).stack()
+
+# [3단계] .value_counts( )를 붙여 장르의 등장 횟수 계산
+# 예시) 인덱스 1의 listed_in 열 값 : International TV Shows, TV Dramas, TV Mysteries
+genres = netflix['listed_in'].str.split(', ', expand=True).stack().value_counts()
+genres
+
+plt.figure(figsize=(12, 6))
