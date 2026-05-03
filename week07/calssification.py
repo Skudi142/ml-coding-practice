@@ -105,3 +105,15 @@ print(f1_score(y_train_5, y_train_pred_forest))
 print(roc_auc_score(y_train_5, y_scores_forest))
 print(precision_score(y_train_5, y_train_pred_forest))
 print(recall_score(y_train_5, y_train_pred_forest))
+
+dict_keys(['data', 'target', 'frame', 'categories', 'feature_names', 'target_names', 'DESCR', 'details', 'url'])
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+(70000, 784)
+['5' '0' '4' ... '4' '5' '6']
+(70000,)
