@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from sklear.datasets import fetch_openml
+from sklearn.datasets import fetch_openml
 
 mnist = fetch_openml('mnist_784', as_frame=False)
 
