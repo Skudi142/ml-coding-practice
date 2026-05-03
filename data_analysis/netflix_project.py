@@ -199,3 +199,16 @@ from wordcloud import WordCloud
 from PIL import Image
 
 plt.figure(figsize=(15, 5))
+
+# wordcolud에서 작동할 수 있도록 데이터프레임을 list로 1차 변환시키고 str(문자열)로 2차 변환
+text = str(list(netflix['description']))
+
+# mask : 단어를 그릴 위치 설정, 흰색(#FFFFFF) 항목은 마스킹된 것으로 간주
+# 로고 이미지 열고 넘파이 배열로 변환
+mask = np.array(Image.open('netflix_logo.jpg'))
+
+# 워드 클라우드 색상맵 만들기
+cmap = plt.matplotlib.colors.LinearSegmentedColormap.from_list('', ['#221f1f','#b20710'])
+
+# 워드 클라우드 생성
+# WordCloud( ).generate(text) : 선언해준 text에서 wordcloud를 생성
