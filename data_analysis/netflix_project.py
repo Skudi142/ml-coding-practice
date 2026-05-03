@@ -82,3 +82,18 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+# 데이터 전처리가 완료된 데이터셋 불러오기
+netflix = pd.read_csv('netflix_preprocessed.csv')
+
+# 넷플릭스 브랜드 상징 색깔 시각화
+sns.palplot(['#221f1f', '#b20710', '#e50914', '#f5f5f1'])
+
+# 제목 정하기
+plt.title('Netflix brand palette', loc='left', fontfamily='serif', fontsize=15, y=1.2)
+plt.show()
+
+netflix['title'].str.contains('squid game', na=False, case=False)
+
+# 오징어 게임을 검색한 조건을 넷플릭스 데이터에 넣어서 True인 값만 출력
+netflix[netflix['title'].str.contains('Squid Game', na=False, case=False)]
