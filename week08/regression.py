@@ -105,3 +105,11 @@ from sklearn.linear_model import Ridge
 ridge_reg = Ridge(alpha=0.1, solver="cholesky")
 ridge_reg.fit(X, y)
 print(ridge_reg.predict([[1.5]]))
+
+sgd_reg = SGDRegressor(penalty="l2", alpha=0.1 / m, tol=None,
+                       max_iter=1000, eta0=0.01, random_state=42)
+sgd_reg.fit(X, y.ravel())  # fit()은 1D 타겟을 기대하므로 y.ravel()을 사용합니다.
+print(sgd_reg.predict([[1.5]]))
+
+# 확률적 평균 GD(solver="sag")를 사용하면
+# 이전과 거의 동일한 솔루션을 얻을 수 있음을 보여줍니다.
