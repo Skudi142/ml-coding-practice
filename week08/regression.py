@@ -57,3 +57,10 @@ plt.ylabel("$y$", rotation=0)
 plt.axis([-3, 3, 0, 10])
 plt.grid()
 plt.show()
+
+from sklearn.preprocessing import PolynomialFeatures
+
+poly_features = PolynomialFeatures(degree=2, include_bias=False)
+X_poly = poly_features.fit_transform(X)
+print(X[0])
+print(X_poly[0])
