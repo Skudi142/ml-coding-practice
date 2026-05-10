@@ -134,3 +134,15 @@ elastic_net.fit(X, y)
 print(elastic_net.predict([[1.5]]))
 
 # 로지스틱 회귀
+from sklearn.datasets import load_iris
+
+iris = load_iris(as_frame=True)
+list(iris)
+
+print(iris.data.head(3))
+print(iris.target.head(3))  # 샘플이 섞여 있지 않습니다.
+
+print(iris.target_names)
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
