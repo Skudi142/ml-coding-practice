@@ -72,3 +72,13 @@ def scrape_webmd_reviews(url):
 
 # --- 실행 부분 ---
 target_url = "https://reviews.webmd.com/drugs/drugreview-wegovy-semaglutide"
+df_reviews = scrape_webmd_reviews(target_url)
+
+if df_reviews is not None and not df_reviews.empty:
+    print("\n✅ 데이터 추출 성공! (상위 5개 출력)")
+    print(df_reviews.head()) 
+    
+    # 한글 깨짐 방지를 위해 utf-8-sig로 저장
+    file_name = 'webmd_wegovy_reviews_final.csv'
+    df_reviews.to_csv(file_name, index=False, encoding='utf-8-sig')
+    print(f"\n파일이 '{file_name}'로 저장되었습니다.")
