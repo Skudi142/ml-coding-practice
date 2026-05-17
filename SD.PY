@@ -78,7 +78,7 @@ df_reviews = scrape_webmd_reviews(target_url)
 
 if df_reviews is not None and not df_reviews.empty:
     print("\n✅ 데이터 추출 성공!")
-    display(df_reviews.head()) # 상위 5개 데이터 확인
+    print(df_reviews.head()) # 상위 5개 데이터 확인
     
     # CSV 파일로 저장해두기
     df_reviews.to_csv('webmd_wegovy_reviews.csv', index=False, encoding='utf-8-sig')
