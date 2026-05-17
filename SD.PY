@@ -92,7 +92,7 @@ glp1_urls = {
 
 # 각 약물당 몇 페이지씩 수집할지 설정 (예: 10페이지 = 약물당 200개, 총 1200개)
 # 우선 테스트를 위해 약물당 3페이지만 돌려보겠습니다.
-final_df = scrape_glp1_master(glp1_urls, pages_per_drug=10)
+final_df = scrape_glp1_master(glp1_urls, pages_per_drug=60)
 
 if not final_df.empty:
     print(f"\n✅ 전체 수집 성공! 총 {len(final_df)}개의 다종 GLP-1 리뷰를 확보했습니다.")
