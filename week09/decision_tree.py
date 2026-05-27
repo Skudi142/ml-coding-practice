@@ -98,3 +98,10 @@ for idx, (name, style) in enumerate(zip(iris.target_names, ("yo", "bs", "g^"))):
              style, label=f"Iris {name}")
 
 plt.xlabel("$z_1$")
+plt.ylabel("$z_2$", rotation=0)
+th1, th2 = tree_clf_pca.tree_.threshold[[0, 2]]
+plt.plot([th1, th1], axes[2:], "k-", linewidth=2)
+plt.plot([th2, th2], axes[2:], "k--", linewidth=2)
+plt.text(th1 - 0.01, axes[2] + 0.05, "Depth=0",
+         horizontalalignment="right", fontsize=15)
+plt.text(th2 - 0.01, axes[2] + 0.05, "Depth=1",
