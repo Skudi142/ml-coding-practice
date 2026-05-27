@@ -38,3 +38,16 @@ tree_clf1 = DecisionTreeClassifier(random_state=42)
 tree_clf2 = DecisionTreeClassifier(min_samples_leaf=5, random_state=42)
 tree_clf1.fit(X_moons, y_moons)
 tree_clf2.fit(X_moons, y_moons)
+
+X_moons_test, y_moons_test = make_moons(n_samples=1000, noise=0.2,
+                                        random_state=43)
+
+print(tree_clf1.score(X_moons_test, y_moons_test))
+print(tree_clf2.score(X_moons_test, y_moons_test))
+
+# 회귀
+
+from sklearn.tree import DecisionTreeRegressor
+import numpy as np
+
+np.random.seed(42)
