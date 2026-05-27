@@ -51,3 +51,16 @@ from sklearn.tree import DecisionTreeRegressor
 import numpy as np
 
 np.random.seed(42)
+X_quad = np.random.rand(200, 1) - 0.5  # 간단한 랜덤한 입력 특성
+y_quad = X_quad ** 2 + 0.025 * np.random.randn(200, 1)
+
+tree_reg = DecisionTreeRegressor(max_depth=2, random_state=42)
+tree_reg.fit(X_quad, y_quad)
+
+export_graphviz(
+    tree_reg,
+    out_file="regression_tree.dot",
+    feature_names=["x1"],
+    rounded=True,
+    filled=True
+)
