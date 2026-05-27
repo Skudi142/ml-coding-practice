@@ -90,3 +90,11 @@ z0s, z1s = np.meshgrid(np.linspace(axes[0], axes[1], 100),
                        np.linspace(axes[2], axes[3], 100))
 X_iris_pca_all = np.c_[z0s.ravel(), z1s.ravel()]
 y_pred = tree_clf_pca.predict(X_iris_pca_all).reshape(z0s.shape)
+
+plt.contourf(z0s, z1s, y_pred, alpha=0.3, cmap=custom_cmap)
+for idx, (name, style) in enumerate(zip(iris.target_names, ("yo", "bs", "g^"))):
+    plt.plot(X_iris_rotated[:, 0][y_iris == idx],
+             X_iris_rotated[:, 1][y_iris == idx],
+             style, label=f"Iris {name}")
+
+plt.xlabel("$z_1$")
