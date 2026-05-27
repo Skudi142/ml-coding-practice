@@ -1,16 +1,131 @@
-# ================================
-# EDA 전체 — ds.py 맨 아래에 이어 붙여
-# (전처리 + 피처엔지니어링 끝난 상태에서 실행)
-# ================================
+import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import numpy as np
 from scipy import stats
 from scipy.stats import gaussian_kde
+import warnings
+warnings.filterwarnings('ignore')
+
+import os
+os.chdir(r'C:\vs_env\PythonProject\ml-coding-practice')
 
 plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 
+# ================================
+# 1. 데이터 로딩
+# ================================
+print("데이터 로딩 중...")
+student_info       = pd.read_csv('studentInfo.csv')
+student_vle        = pd.read_csv('studentVle.csv')
+student_assessment = pd.read_csv('studentAssessment.csv')
+assessments        = pd.read_csv('assessments.csv')
+vle                = pd.read_csv('vle.csv')
+print("로딩 완료")
+
+# ================================
+# 2. 전처리
+# ================================
+print("\n전처리 시작...")
+
+student_assessment = student_assessment[
+    student_assessment['is_banked'] == 0
+].copy()
+
+student_vle = student_vle.groupby(
+    ['code_module','code_presentation','id_student','id_site','date']
+)['sum_click'].sum().reset_index()
+
+upper = student_vle['sum_click'].quantile(0.99)
+student_vle['sum_click'] = student_vle['sum_click'].clip(upper=upper)
+
+assessments = assessments[
+    assessments['assessment_type'] != 'Exam'
+].copy()
+
+student_info['target'] = student_info['final_result'].map({
+    'Pass': 1, 'Distinction': 1,
+    'Withdrawn': 0, 'Fail': 0
+})
+
+student_info = student_info.sort_values(
+    'num_of_prev_attempts'
+).drop_duplicates(subset='id_student', keep='last').copy()
+
+print(f"전처리 완료 — 학생 수 {len(student_info):,}명")
+
+# ================================
+# 3. 피처 엔지니어링
+# ================================
+print("\n피처 엔지니어링 시작...")
+
+vle_4w = student_vle[student_vle['date'].between(1, 28)].copy()
+feat1 = vle_4w.groupby('id_student')['sum_click'] \
+              .sum().reset_index()
+feat1.columns = ['id_student', 'total_click_4weeks']
+print("피처 1 완료")
+
+feat2 = student_assessment.groupby('id_student')['score'] \
+                           .mean().reset_index()
+feat2.columns = ['id_student', 'avg_score']
+print("피처 2 완료")
+
+total_per_module = assessments.groupby(
+    ['code_module','code_presentation']
+)['id_assessment'].count().reset_index()
+total_per_module.columns = [
+    'code_module','code_presentation','total_assessments'
+]
+submitted_per_module = student_assessment.merge(
+    assessments[['id_assessment','code_module','code_presentation']],
+    on='id_assessment', how='left'
+).groupby(
+    ['id_student','code_module','code_presentation']
+)['id_assessment'].count().reset_index()
+submitted_per_module.columns = [
+    'id_student','code_module','code_presentation','submitted_count'
+]
+feat3_full = submitted_per_module.merge(
+    total_per_module,
+    on=['code_module','code_presentation'], how='left'
+)
+feat3_full['submission_rate'] = (
+    feat3_full['submitted_count'] / feat3_full['total_assessments']
+).clip(0, 1)
+feat3 = feat3_full.groupby('id_student')['submission_rate'] \
+                   .mean().reset_index()
+print("피처 3 완료")
+
+vle_type = student_vle.merge(
+    vle[['id_site','activity_type']], on='id_site', how='left'
+)
+feat4 = vle_type.groupby('id_student')['activity_type'] \
+                .nunique().reset_index()
+feat4.columns = ['id_student', 'content_diversity']
+print("피처 4 완료")
+
+active_types = ['quiz', 'forumng', 'oucollaborate']
+active_click = vle_type[
+    vle_type['activity_type'].isin(active_types)
+].groupby('id_student')['sum_click'].sum()
+total_click_all = vle_type.groupby('id_student')['sum_click'].sum()
+feat5 = (active_click / total_click_all.replace(0, np.nan)) \
+        .reset_index()
+feat5.columns = ['id_student', 'active_learning_ratio']
+print("피처 5 완료")
+
+base = student_info[['id_student','target']].copy()
+for feat in [feat1, feat2, feat3, feat4, feat5]:
+    base = base.merge(feat, on='id_student', how='left')
+base.fillna(0, inplace=True)
+
+print(f"\n최종 테이블: {base.shape}")
+print(f"결측치: {base.isnull().sum().sum()}개")
+
+# ================================
+# 4. EDA
+# ================================
 FEATURE_COLS = [
     'total_click_4weeks',
     'avg_score',
@@ -27,11 +142,8 @@ feature_kor = {
     'active_learning_ratio': '능동 학습 비율 ★신규'
 }
 
-# ================================
 # EDA 1. 타겟 분포
-# ================================
 fig, axes = plt.subplots(1, 2, figsize=(13, 5))
-
 target_counts = base['target'].value_counts().sort_index()
 labels_t = ['위험군\n(Withdrawn+Fail)', '안전군\n(Pass+Distinction)']
 colors_t  = ['#e74c3c', '#2ecc71']
@@ -61,16 +173,13 @@ axes[1].set_title('위험군 vs 안전군 인원', fontsize=13, fontweight='bold
 axes[1].axhline(y=target_counts.sum()/2, color='gray',
                 linestyle='--', linewidth=1, label='50% 기준')
 axes[1].legend()
-
 plt.suptitle(f'EDA 1 — 타겟 변수 분포  (총 {len(base):,}명)',
              fontsize=15, fontweight='bold')
 plt.tight_layout()
 plt.show()
 input("Enter → 다음")
 
-# ================================
-# EDA 2. 피처별 분포 (히스토그램 + KDE)
-# ================================
+# EDA 2. 피처별 분포
 fig, axes = plt.subplots(2, 3, figsize=(16, 10))
 axes = axes.flatten()
 
@@ -107,13 +216,11 @@ plt.tight_layout()
 plt.show()
 input("Enter → 다음")
 
-# ================================
-# EDA 3. 박스플롯 + Mann-Whitney 검정
-# ================================
+# EDA 3. 박스플롯 + 통계 검정
 fig, axes = plt.subplots(2, 3, figsize=(16, 10))
 axes = axes.flatten()
 
-print("="*55)
+print("\n" + "="*55)
 print("Mann-Whitney U 검정 결과")
 print("="*55)
 
@@ -125,8 +232,8 @@ for idx, col in enumerate(FEATURE_COLS):
     stat, p = stats.mannwhitneyu(d0, d1, alternative='two-sided')
     sig = 'p < 0.001 ✅' if p < 0.001 else f'p = {p:.4f}'
 
-    print(f"{col:<25}  위험군 중앙값 {np.median(d0):.3f}  "
-          f"안전군 중앙값 {np.median(d1):.3f}  {sig}")
+    print(f"{col:<25}  위험군 {np.median(d0):.3f}  "
+          f"안전군 {np.median(d1):.3f}  {sig}")
 
     bp = ax.boxplot(
         [d0, d1], labels=['위험군', '안전군'],
@@ -156,9 +263,7 @@ plt.tight_layout()
 plt.show()
 input("Enter → 다음")
 
-# ================================
 # EDA 4. 상관관계 히트맵
-# ================================
 corr_matrix = base[FEATURE_COLS + ['target']].corr()
 
 fig, axes = plt.subplots(1, 2, figsize=(16, 6))
@@ -199,9 +304,7 @@ plt.tight_layout()
 plt.show()
 input("Enter → 다음")
 
-# ================================
 # EDA 5. 제출률 구간별 이탈률
-# ================================
 base['sub_bin'] = pd.cut(
     base['submission_rate'],
     bins=[0, 0.2, 0.4, 0.6, 0.8, 1.01],
@@ -256,9 +359,7 @@ plt.tight_layout()
 plt.show()
 input("Enter → 다음")
 
-# ================================
 # EDA 6. 산점도
-# ================================
 sample = base.sample(n=3000, random_state=42)
 
 fig, axes = plt.subplots(1, 2, figsize=(14, 6))
@@ -293,16 +394,5 @@ plt.tight_layout()
 plt.show()
 
 print("\n" + "="*55)
-print("EDA 통계 요약")
+print("EDA 완료")
 print("="*55)
-print(f"총 학생 수  : {len(base):,}명")
-print(f"위험군      : {(base['target']==0).sum():,}명  ({(base['target']==0).mean():.1%})")
-print(f"안전군      : {(base['target']==1).sum():,}명  ({(base['target']==1).mean():.1%})")
-print("\n피처별 중앙값:")
-for col in FEATURE_COLS:
-    m0 = base[base['target']==0][col].median()
-    m1 = base[base['target']==1][col].median()
-    r  = corr_matrix.loc[col, 'target']
-    print(f"  {feature_kor[col]:<22}  위험군 {m0:.3f}  안전군 {m1:.3f}  r={r:+.2f}")
-
-print("\nEDA 완료")
