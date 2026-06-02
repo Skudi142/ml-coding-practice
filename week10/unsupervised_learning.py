@@ -115,3 +115,22 @@ for k in (3, 4, 5, 6):
     plt.title(f"$k={k}$")
 
 plt.show()
+
+# DBSCAN
+from sklearn.cluster import DBSCAN
+from sklearn.datasets import make_moons
+
+X, y = make_moons(n_samples=1000, noise=0.05, random_state=42)
+dbscan = DBSCAN(eps=0.05, min_samples=5)
+dbscan.fit(X)
+
+print(dbscan.labels_[:10])
+
+print(dbscan.core_sample_indices_[:10])
+print(dbscan.components_)
+
+def plot_dbscan(dbscan, X, size, show_xlabels=True, show_ylabels=True):
+    core_mask = np.zeros_like(dbscan.labels_, dtype=bool)
+    core_mask[dbscan.core_sample_indices_] = True
+    anomalies_mask = dbscan.labels_ == -1
+    non_core_mask = ~(core_mask | anomalies_mask)
