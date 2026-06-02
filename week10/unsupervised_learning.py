@@ -29,3 +29,22 @@ def plot_clusters(X, y=None):
     plt.scatter(X[:, 0], X[:, 1], c=y, s=1)
     plt.xlabel("$x_1$")
     plt.ylabel("$x_2$", rotation=0)
+
+plt.figure(figsize=(8, 4))
+plot_clusters(X)
+plt.gca().set_axisbelow(True)
+plt.grid()
+plt.show()
+
+# 각 샘플은 5개의 클러스터 중 하나에 할당
+print(y_pred)
+
+# 5개의 _센트로이드_(즉, 클러스터 중심)을 추정
+print(kmeans.cluster_centers_)
+
+print(kmeans.labels_)
+
+# 이너셔
+print(kmeans.inertia_)
+
+print(kmeans.score(X))
