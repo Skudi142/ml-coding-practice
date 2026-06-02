@@ -134,3 +134,4 @@ def plot_dbscan(dbscan, X, size, show_xlabels=True, show_ylabels=True):
     core_mask[dbscan.core_sample_indices_] = True
     anomalies_mask = dbscan.labels_ == -1
     non_core_mask = ~(core_mask | anomalies_mask)
+    
